@@ -9,7 +9,7 @@ QSqlDatabase auth;
 
 bool connOpen(){
     QSqlDatabase auth=QSqlDatabase::addDatabase("QSQLITE");
-    auth.setDatabaseName("D:/Bachelors/1st Year/Y1S2/semester project/sirani.db");
+    auth.setDatabaseName("C:/Users/shubh/Desktop/sirani.db");
     if(!auth.open()){
         qDebug()<<("Failed");
         return false;

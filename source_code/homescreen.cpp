@@ -282,24 +282,36 @@ void homescreen::on_MoodTrackerButton_clicked()
 
     showmood_moodtracker();
 
-
     int happy,sad,calm,angry;
+
     qry.prepare("select count(*) from (select * from '"+mood_table+"' limit 7 offset :offsetval) where mood = 'Happy'");
+    qry.bindValue(":offsetval", offset);
     qry.exec();
     qry.next();
     happy = qry.value(0).toInt();
+    qDebug() << happy;
+
     qry.prepare("select count(*) from (select * from '"+mood_table+"' limit 7 offset :offsetval) where mood = 'Sad'");
+    qry.bindValue(":offsetval", offset);
     qry.exec();
     qry.next();
     sad = qry.value(0).toInt();
+    qDebug() << sad;
+
     qry.prepare("select count(*) from (select * from '"+mood_table+"' limit 7 offset :offsetval) where mood = 'Calm'");
+    qry.bindValue(":offsetval", offset);
     qry.exec();
     qry.next();
     calm = qry.value(0).toInt();
+    qDebug() << calm;
+
     qry.prepare("select count(*) from (select * from '"+mood_table+"' limit 7 offset :offsetval) where mood = 'Angry'");
+    qry.bindValue(":offsetval", offset);
     qry.exec();
     qry.next();
     angry = qry.value(0).toInt();
+    qDebug() << angry;
+
     ui -> stackedWidget -> setCurrentIndex(2);
 
     if(happy>sad && happy>calm && happy>angry){
